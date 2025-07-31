@@ -224,6 +224,8 @@
             text-align: center;
             letter-spacing: 0.3px;
             word-spacing: 1px;
+            min-height: auto;
+            height: auto;
         }
         
         .clinical-card::before {
@@ -529,6 +531,116 @@
             75% { transform: translateY(-5px) rotate(-1deg); }
         }
         
+        .indication-card-enter {
+            animation: indicationCardEnter 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        
+        @keyframes indicationCardEnter {
+            0% {
+                opacity: 0;
+                transform: translateY(40px) scale(0.8) rotateX(20deg);
+                filter: blur(10px);
+            }
+            60% {
+                opacity: 0.8;
+                transform: translateY(-5px) scale(1.05) rotateX(-2deg);
+                filter: blur(2px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1) rotateX(0deg);
+                filter: blur(0px);
+            }
+        }
+        
+        .complex-treatment-enter {
+            animation: complexTreatmentEnter 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+        
+        @keyframes complexTreatmentEnter {
+            0% {
+                opacity: 0;
+                transform: translateX(60px) scale(0.9) rotateY(15deg);
+                filter: blur(8px);
+            }
+            50% {
+                opacity: 0.7;
+                transform: translateX(-10px) scale(1.02) rotateY(-3deg);
+                filter: blur(3px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0) scale(1) rotateY(0deg);
+                filter: blur(0px);
+            }
+        }
+        
+        .stat-counter {
+            animation: statPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes statPulse {
+            0%, 100% {
+                transform: scale(1);
+                text-shadow: 0 0 5px rgba(59, 130, 246, 0.3);
+            }
+            50% {
+                transform: scale(1.05);
+                text-shadow: 0 0 15px rgba(59, 130, 246, 0.6);
+            }
+        }
+        
+        .indication-icon-float {
+            animation: indicationIconFloat 3s ease-in-out infinite;
+        }
+        
+        @keyframes indicationIconFloat {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg) scale(1);
+            }
+            25% {
+                transform: translateY(-6px) rotate(2deg) scale(1.05);
+            }
+            50% {
+                transform: translateY(-3px) rotate(-1deg) scale(1.02);
+            }
+            75% {
+                transform: translateY(-8px) rotate(1deg) scale(1.03);
+            }
+        }
+        
+        .hover-lift {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-12px) scale(1.05) rotateX(5deg);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.15),
+                0 0 0 1px rgba(59, 130, 246, 0.1);
+            filter: brightness(1.05);
+        }
+        
+        .shimmer-effect {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .shimmer-effect::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.8s ease;
+        }
+        
+        .shimmer-effect:hover::before {
+            left: 100%;
+        }
+        
         .glow {
             animation: glow 1.5s ease-in-out infinite alternate;
         }
@@ -637,7 +749,7 @@
             <div class="absolute bottom-4 right-4 z-10">
                 <img src="assets/logo.png" alt="Boiko Clinic Logo" class="h-20 w-auto opacity-95 shadow-xl rounded-lg bg-white p-3 border border-gray-200">
             </div>
-            <div class="max-w-7xl mx-auto px-4 w-full h-full flex flex-col py-2">
+            <div class="max-w-7xl mx-auto px-4 w-full flex flex-col py-1">
                 <div class="text-center mb-3">
                     <h2 class="text-3xl font-bold text-gray-900 mb-2" style="font-family: 'Inter'; letter-spacing: 0.5px;">
                         Склад препарату НейроКор
@@ -679,8 +791,8 @@
                         <!-- Рядок 2 -->
                         <div class="clinical-card bg-white p-3">
                             <div class="flex items-center space-x-2 mb-2">
-                               <div class="w-20 h-20 bg-pink-500 rounded-xl flex items-center justify-center text-white shadow-lg">
-                                    <span class="text-4xl">🌺</span>
+                               <div class="w-16 h-16 bg-pink-500 rounded-xl flex items-center justify-center text-white shadow-lg">
+                                    <span class="text-3xl">🌺</span>
                                 </div>
                                 <div class="flex-1">
                                     <h3 class="font-semibold text-gray-900 text-xs leading-tight">Барвінок малий</h3>
@@ -730,9 +842,11 @@
                     <div class="flex justify-center items-center">
                         <div class="p-4">
                             <!-- ТІЛЬКИ ЗОБРАЖЕННЯ КОРОБКИ БЕЗ РАМКИ ТА ПІДПИСІВ -->
-                            <img src="assets/neurocor.png" alt="NeuroCor Product" class="w-full max-w-2xl h-auto object-contain mx-auto">
+                            <img src="assets/neuronor.png" alt="NeuroCor Product" class="w-full max-w-2xl h-auto object-contain mx-auto drop-shadow-2xl">
                         </div>
                     </div>
+                    
+
                 </div>
             </div>
         </div>
@@ -749,10 +863,10 @@
                 <div class="grid grid-cols-3 gap-4 flex-1">
                     <!-- Left Column - Effects 1-2 -->
                     <div class="grid grid-cols-1 gap-4">
-                        <div class="clinical-card bg-white p-5 h-full">
-                            <div class="flex items-center space-x-4 h-full">
-                                <div class="w-20 h-20 bg-red-600 rounded-xl flex items-center justify-center text-white shadow-lg flex-shrink-0">
-                                    <span class="text-4xl">🩸</span>
+                        <div class="clinical-card bg-white p-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-16 h-16 bg-red-600 rounded-xl flex items-center justify-center text-white shadow-lg flex-shrink-0">
+                                    <span class="text-3xl">🩸</span>
                                 </div>
                                 <div class="flex-1 flex flex-col justify-center">
                                     <h3 class="font-semibold text-gray-900 mb-2 text-base">Донатор оксиду азоту</h3>
@@ -761,10 +875,10 @@
                             </div>
                         </div>
                         
-                        <div class="clinical-card bg-white p-5 h-full">
-                            <div class="flex items-center space-x-4 h-full">
-                                <div class="w-20 h-20 bg-emerald-600 rounded-xl flex items-center justify-center text-white shadow-lg flex-shrink-0">
-                                    <span class="text-4xl">🍞</span>
+                        <div class="clinical-card bg-white p-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-16 h-16 bg-emerald-600 rounded-xl flex items-center justify-center text-white shadow-lg flex-shrink-0">
+                                    <span class="text-3xl">🍞</span>
                                 </div>
                                 <div class="flex-1 flex flex-col justify-center">
                                     <h3 class="font-semibold text-gray-900 mb-2 text-base">Якісно розщеплює вуглеводи</h3>
@@ -773,10 +887,10 @@
                             </div>
                         </div>
                         
-                        <div class="clinical-card bg-white p-5 h-full">
-                            <div class="flex items-center space-x-4 h-full">
-                                <div class="w-20 h-20 bg-purple-600 rounded-xl flex items-center justify-center text-white shadow-lg flex-shrink-0">
-                                    <span class="text-4xl">🛡️</span>
+                        <div class="clinical-card bg-white p-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-16 h-16 bg-purple-600 rounded-xl flex items-center justify-center text-white shadow-lg flex-shrink-0">
+                                    <span class="text-3xl">🛡️</span>
                                 </div>
                                 <div class="flex-1 flex flex-col justify-center">
                                     <h3 class="font-semibold text-gray-900 mb-2 text-base">Гальмує розвиток атеросклерозу</h3>
@@ -788,10 +902,10 @@
 
                     <!-- Center Column - Target Diagram -->
                     <div class="flex flex-col justify-center">
-                        <div class="clinical-card bg-white p-5 h-full">
-                            <h3 class="font-semibold text-lg text-gray-900 mb-4 text-center">Цілі впливу НейроКор</h3>
-                            <div class="relative flex-1 flex items-center justify-center">
-                                <svg class="w-full max-w-md h-56" viewBox="0 0 500 280">
+                        <div class="clinical-card bg-white p-4">
+                            <h3 class="font-semibold text-base text-gray-900 mb-3 text-center">Цілі впливу НейроКор</h3>
+                            <div class="relative flex items-center justify-center">
+                                <svg class="w-full max-w-sm h-48" viewBox="0 0 500 280">
                                     <!-- Enhanced background glow -->
                                     <defs>
                                         <radialGradient id="bodyGlow" cx="50%" cy="50%" r="50%">
@@ -1049,116 +1163,79 @@
         </div>
 
 <!-- Slide 4: Показання та Комплексне Лікування -->
-<div id="slide-4" class="slide bg-gray-50 flex flex-col items-center justify-center px-4 py-4" style="aspect-ratio: 16/9; max-height: 100vh; overflow-y: auto;">
+<div id="slide-4" class="slide bg-gray-50 flex flex-col items-center justify-center px-6 py-6 relative" style="aspect-ratio: 16/9; overflow: hidden;">
 
   <!-- Заголовок -->
-  <h2 class="text-3xl font-bold text-center text-gray-900 mb-6" style="font-family: 'Inter'; letter-spacing: 0.5px; word-spacing: 3px;">Показання до застосування</h2>
+  <h2 class="text-3xl font-bold text-center text-gray-900 mb-4" style="font-family: 'Inter'; letter-spacing: 0.5px; word-spacing: 2px;">
+    Показання до застосування
+  </h2>
 
-  <div class="grid grid-cols-2 gap-6 w-full max-w-7xl">
+  <!-- Основна сітка -->
+  <div class="grid grid-cols-3 gap-6 w-full max-w-7xl items-center">
 
-    <!-- Ліва колонка: Показання -->
-    <div class="grid grid-cols-2 gap-4">
-
-      <!-- ОДИН КАРТОЧНИЙ БЛОК -->
-      <div class="clinical-card bg-white p-4 shadow-md border rounded-xl h-full flex items-center justify-center text-center transition-all duration-300 hover:shadow-lg flex-col">
-        <div class="w-14 h-14 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center text-white text-2xl mb-3 shadow">
+    <!-- Колонка 1 -->
+    <div class="flex flex-col gap-3">
+      <div class="clinical-card bg-white p-4 shadow border rounded-xl flex flex-col items-center text-center">
+        <div class="w-14 h-14 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center text-white text-xl mb-2 shadow">
           🔺
         </div>
-        <div>
-          <h4 class="font-bold text-sm text-gray-900 mb-1">Гіпертонічна хвороба</h4>
-          <p class="text-xs text-gray-600 leading-snug">Комплексне лікування та профілактика гіпертензії</p>
-        </div>
+        <h4 class="font-semibold text-sm text-gray-900 mb-1">Гіпертонічна хвороба</h4>
+        <p class="text-xs text-gray-600">Комплексне лікування та профілактика гіпертензії</p>
       </div>
-
-      <div class="clinical-card bg-white p-4 shadow-md border rounded-xl h-full flex items-center justify-center text-center transition-all duration-300 hover:shadow-lg flex-col">
-        <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center text-white text-2xl mb-3 shadow">
+      <div class="clinical-card bg-white p-4 shadow border rounded-xl flex flex-col items-center text-center">
+        <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center text-white text-xl mb-2 shadow">
           ❤️
         </div>
-        <div>
-          <h4 class="font-bold text-sm text-gray-900 mb-1">Ішемічна хвороба серця</h4>
-          <p class="text-xs text-gray-600 leading-snug">Покращення функції серця та кровообігу</p>
-        </div>
+        <h4 class="font-semibold text-sm text-gray-900 mb-1">Ішемічна хвороба серця</h4>
+        <p class="text-xs text-gray-600">Покращення функції серця та кровообігу</p>
       </div>
-
-      <div class="clinical-card bg-white p-4 shadow-md border rounded-xl h-full flex items-center justify-center text-center transition-all duration-300 hover:shadow-lg flex-col">
-        <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center text-white text-2xl mb-3 shadow">
+      <div class="clinical-card bg-white p-4 shadow border rounded-xl flex flex-col items-center text-center">
+        <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center text-white text-xl mb-2 shadow">
           🧠
         </div>
-        <div>
-          <h4 class="font-bold text-sm text-gray-900 mb-1">Цереброваскулярні хвороби</h4>
-          <p class="text-xs text-gray-600 leading-snug">Покращення мозкового кровообігу та когнітивних функцій</p>
-        </div>
-      </div>
-
-      <div class="clinical-card bg-white p-4 shadow-md border rounded-xl h-full flex items-center justify-center text-center transition-all duration-300 hover:shadow-lg flex-col">
-        <div class="w-14 h-14 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center text-white text-2xl mb-3 shadow">
-          🍬
-        </div>
-        <div>
-          <h4 class="font-bold text-sm text-gray-900 mb-1">Цукровий діабет</h4>
-          <p class="text-xs text-gray-600 leading-snug">Підтримка при діабетичних ускладненнях</p>
-        </div>
-      </div>
-
-      <div class="clinical-card bg-white p-4 shadow-md border rounded-xl h-full flex items-center justify-center text-center transition-all duration-300 hover:shadow-lg flex-col">
-        <div class="w-14 h-14 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center text-white text-2xl mb-3 shadow">
-          🛑
-        </div>
-        <div>
-          <h4 class="font-bold text-sm text-gray-900 mb-1">Атеросклероз</h4>
-          <p class="text-xs text-gray-600 leading-snug">Профілактика та уповільнення прогресування</p>
-        </div>
-      </div>
-
-      <div class="clinical-card bg-white p-4 shadow-md border rounded-xl h-full flex items-center justify-center text-center transition-all duration-300 hover:shadow-lg flex-col">
-        <div class="w-14 h-14 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl flex items-center justify-center text-white text-2xl mb-3 shadow">
-          🌡️
-        </div>
-        <div>
-          <h4 class="font-bold text-sm text-gray-900 mb-1">Вегетосудинні розлади</h4>
-          <p class="text-xs text-gray-600 leading-snug">Нормалізація вегетативної нервової системи</p>
-        </div>
+        <h4 class="font-semibold text-sm text-gray-900 mb-1">Цереброваскулярні хвороби</h4>
+        <p class="text-xs text-gray-600">Покращення мозкового кровообігу та когнітивних функцій</p>
       </div>
     </div>
 
-    <!-- Права колонка -->
-    <div class="flex flex-col gap-4 justify-between">
+    <!-- Колонка 2: упаковка -->
+    <div class="flex items-center justify-center">
+      <img src="assets/neuronor.png" alt="NeuroCor Product" class="max-h-[420px] object-contain drop-shadow-xl">
+    </div>
 
-      <!-- Блок 1 -->
-      <div class="bg-gradient-to-br from-blue-50 to-indigo-100 p-4 border border-blue-200 rounded-xl shadow-md text-center hover:shadow-lg transition-all duration-300 flex flex-col items-center justify-center">
-        <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center text-white mb-3 shadow text-xl">
-          ✔️
+    <!-- Колонка 3 -->
+    <div class="flex flex-col gap-3">
+      <div class="clinical-card bg-white p-4 shadow border rounded-xl flex flex-col items-center text-center">
+        <div class="w-14 h-14 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center text-white text-xl mb-2 shadow">
+          🍬
         </div>
-        <h4 class="text-sm font-bold text-gray-900 mb-1">НейроКор у терапії</h4>
-        <p class="text-xs text-gray-600 leading-snug">Допоміжний засіб для підвищення ефективності основного лікування</p>
+        <h4 class="font-semibold text-sm text-gray-900 mb-1">Цукровий діабет</h4>
+        <p class="text-xs text-gray-600">Підтримка при діабетичних ускладненнях</p>
       </div>
-
-      <!-- Блок 2 -->
-      <div class="bg-white p-4 border border-gray-200 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 flex flex-col items-center justify-center text-center">
-        <div class="w-14 h-14 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl flex items-center justify-center text-white text-2xl mb-3 shadow">
-          ♻️
+      <div class="clinical-card bg-white p-4 shadow border rounded-xl flex flex-col items-center text-center">
+        <div class="w-14 h-14 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center text-white text-xl mb-2 shadow">
+          🛑
         </div>
-        <h4 class="text-sm font-bold text-gray-900 mb-1">Коморбідні стани</h4>
-        <p class="text-xs text-gray-600 leading-snug">75% пацієнтів мають супутні патології</p>
+        <h4 class="font-semibold text-sm text-gray-900 mb-1">Атеросклероз</h4>
+        <p class="text-xs text-gray-600">Профілактика та уповільнення прогресування</p>
       </div>
-
-      <!-- Блок 3 -->
-      <div class="bg-gradient-to-br from-emerald-50 to-green-100 p-4 border border-emerald-200 rounded-xl shadow-md text-center hover:shadow-lg transition-all duration-300 flex flex-col items-center justify-center">
-        <div class="w-14 h-14 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center text-white text-2xl mb-3 shadow">
-          📊
+      <div class="clinical-card bg-white p-4 shadow border rounded-xl flex flex-col items-center text-center">
+        <div class="w-14 h-14 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl flex items-center justify-center text-white text-xl mb-2 shadow">
+          🌡️
         </div>
-        <h4 class="text-sm font-bold text-gray-900 mb-1">Ефективність підходу</h4>
-        <p class="text-xs text-gray-600 leading-snug">Покращення стану в 89,3%<br><span class="text-blue-600 font-bold">14–21 день</span> до ефекту</p>
+        <h4 class="font-semibold text-sm text-gray-900 mb-1">Вегетосудинні розлади</h4>
+        <p class="text-xs text-gray-600">Нормалізація вегетативної нервової системи</p>
       </div>
     </div>
   </div>
 
   <!-- Логотип -->
   <div class="absolute bottom-4 right-4 z-10">
-    <img src="assets/logo.png" alt="Boiko Clinic Logo" class="h-10 w-auto opacity-80 shadow-lg rounded-lg bg-white p-1">
+    <img src="assets/logo.png" alt="Boiko Clinic Logo" class="h-12 w-auto opacity-90 shadow-lg rounded-lg bg-white p-1.5">
   </div>
-
 </div>
+
+
 
         <!-- Slide 5: Спосіб застосування -->
         <div class="slide bg-gray-50 items-center justify-center" id="slide-5">
@@ -1171,9 +1248,9 @@
                 
                 <div class="grid grid-cols-4 gap-4 flex-1">
                     <!-- Левый блок 1 - Дозування -->
-                    <div class="clinical-card bg-white p-5">
-                        <div class="w-20 h-20 bg-blue-600 rounded-xl mx-auto mb-3 flex items-center justify-center shadow-lg">
-                            <span class="text-4xl">💊</span>
+                    <div class="clinical-card bg-white p-4">
+                        <div class="w-16 h-16 bg-blue-600 rounded-xl mx-auto mb-2 flex items-center justify-center shadow-lg">
+                            <span class="text-3xl">💊</span>
                         </div>
                         <h3 class="text-base font-semibold text-gray-900 mb-2 text-center">Дозування</h3>
                         <p class="text-gray-600 text-sm mb-3 text-center">1 капсула 2 рази на добу</p>
@@ -1203,9 +1280,9 @@
                     </div>
                     
                     <!-- Левый блок 2 - Тривалість -->
-                    <div class="clinical-card bg-white p-5">
-                        <div class="w-20 h-20 bg-emerald-600 rounded-xl mx-auto mb-3 flex items-center justify-center shadow-lg">
-                            <span class="text-4xl">⏳</span>
+                    <div class="clinical-card bg-white p-4">
+                        <div class="w-16 h-16 bg-emerald-600 rounded-xl mx-auto mb-2 flex items-center justify-center shadow-lg">
+                            <span class="text-3xl">⏳</span>
                         </div>
                         <h3 class="text-base font-semibold text-gray-900 mb-2 text-center">Тривалість</h3>
                         <p class="text-gray-600 text-sm mb-3 text-center">Курс лікування 1-2 місяці</p>
@@ -1221,9 +1298,9 @@
                     </div>
 
                     <!-- Правый блок 1 - Режим прийому -->
-                    <div class="clinical-card bg-white p-5">
-                        <div class="w-20 h-20 bg-purple-600 rounded-xl mx-auto mb-3 flex items-center justify-center shadow-lg">
-                            <span class="text-4xl">📅</span>
+                    <div class="clinical-card bg-white p-4">
+                        <div class="w-16 h-16 bg-purple-600 rounded-xl mx-auto mb-2 flex items-center justify-center shadow-lg">
+                            <span class="text-3xl">📅</span>
                         </div>
                         <h3 class="text-base font-semibold text-gray-900 mb-2 text-center">Режим прийому</h3>
                         <div class="space-y-2 mt-3">
@@ -1258,9 +1335,9 @@
                     </div>
 
                     <!-- Правый блок 2 - Ефективність -->
-                    <div class="clinical-card bg-white p-5">
-                        <div class="w-20 h-20 bg-amber-600 rounded-xl mx-auto mb-3 flex items-center justify-center shadow-lg">
-                            <span class="text-4xl">📊</span>
+                    <div class="clinical-card bg-white p-4">
+                        <div class="w-16 h-16 bg-amber-600 rounded-xl mx-auto mb-2 flex items-center justify-center shadow-lg">
+                            <span class="text-3xl">📊</span>
                         </div>
                         <h3 class="text-base font-semibold text-gray-900 mb-2 text-center">Ефективність</h3>
                         <div class="text-center mb-3">
@@ -1273,46 +1350,54 @@
                     </div>
                 </div>
 
-                <!-- Нижний блок - Прогрес курсу -->
+                <!-- Нижний блок - Динаміка курсу + Упаковка -->
                 <div class="mt-4">
-                    <div class="clinical-card bg-white p-5">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-4 text-center">Динаміка ефекту протягом курсу</h3>
-                        <div class="grid grid-cols-3 gap-6">
-                            <div class="text-center">
-                                <div class="w-16 h-16 bg-blue-100 rounded-full mx-auto mb-2 flex items-center justify-center">
-                                    <span class="text-xs text-blue-600 font-bold">1-2</span>
+                    <div class="grid grid-cols-2 gap-6">
+                        <!-- Ліва частина - Динаміка ефекту (зменшена ширина) -->
+                        <div class="clinical-card bg-white p-4">
+                            <h3 class="text-base font-semibold text-gray-900 mb-3 text-center">Динаміка ефекту протягом курсу</h3>
+                            <div class="grid grid-cols-3 gap-3">
+                                <div class="text-center">
+                                    <div class="w-14 h-14 bg-blue-100 rounded-full mx-auto mb-2 flex items-center justify-center">
+                                        <span class="text-xs text-blue-600 font-bold">1-2</span>
+                                    </div>
+                                    <div class="text-sm font-medium text-gray-900 mb-1">Тиждень 1-2</div>
+                                    <div class="text-xs text-gray-600 mb-2">Адаптація</div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="bg-blue-600 h-2 rounded-full course-bar-1" data-width="25" style="width: 0%; transition: width 1.5s ease-in-out;"></div>
+                                    </div>
+                                    <div class="text-xs text-blue-600 font-bold mt-1">25%</div>
                                 </div>
-                                <div class="text-sm font-medium text-gray-900 mb-1">Тиждень 1-2</div>
-                                <div class="text-xs text-gray-600 mb-2">Адаптація організму</div>
-                                <div class="w-full bg-gray-200 rounded-full h-2">
-                                    <div class="bg-blue-600 h-2 rounded-full course-bar-1" data-width="25" style="width: 0%; transition: width 1.5s ease-in-out;"></div>
+                                
+                                <div class="text-center">
+                                    <div class="w-14 h-14 bg-emerald-100 rounded-full mx-auto mb-2 flex items-center justify-center">
+                                        <span class="text-xs text-emerald-600 font-bold">3-4</span>
+                                    </div>
+                                    <div class="text-sm font-medium text-gray-900 mb-1">Тиждень 3-4</div>
+                                    <div class="text-xs text-gray-600 mb-2">Стабілізація</div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="bg-emerald-600 h-2 rounded-full course-bar-2" data-width="50" style="width: 0%; transition: width 1.5s ease-in-out;"></div>
+                                    </div>
+                                    <div class="text-xs text-emerald-600 font-bold mt-1">50%</div>
                                 </div>
-                                <div class="text-xs text-blue-600 font-bold mt-1">25%</div>
+                                
+                                <div class="text-center">
+                                    <div class="w-14 h-14 bg-purple-100 rounded-full mx-auto mb-2 flex items-center justify-center">
+                                        <span class="text-xs text-purple-600 font-bold">5-8</span>
+                                    </div>
+                                    <div class="text-sm font-medium text-gray-900 mb-1">Тиждень 5-8</div>
+                                    <div class="text-xs text-gray-600 mb-2">Максимум</div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="bg-purple-600 h-2 rounded-full course-bar-3" data-width="100" style="width: 0%; transition: width 1.5s ease-in-out;"></div>
+                                    </div>
+                                    <div class="text-xs text-purple-600 font-bold mt-1">100%</div>
+                                </div>
                             </div>
-                            
-                            <div class="text-center">
-                                <div class="w-16 h-16 bg-emerald-100 rounded-full mx-auto mb-2 flex items-center justify-center">
-                                    <span class="text-xs text-emerald-600 font-bold">3-4</span>
-                                </div>
-                                <div class="text-sm font-medium text-gray-900 mb-1">Тиждень 3-4</div>
-                                <div class="text-xs text-gray-600 mb-2">Стабілізація ефекту</div>
-                                <div class="w-full bg-gray-200 rounded-full h-2">
-                                    <div class="bg-emerald-600 h-2 rounded-full course-bar-2" data-width="50" style="width: 0%; transition: width 1.5s ease-in-out;"></div>
-                                </div>
-                                <div class="text-xs text-emerald-600 font-bold mt-1">50%</div>
-                            </div>
-                            
-                            <div class="text-center">
-                                <div class="w-16 h-16 bg-purple-100 rounded-full mx-auto mb-2 flex items-center justify-center">
-                                    <span class="text-xs text-purple-600 font-bold">5-8</span>
-                                </div>
-                                <div class="text-sm font-medium text-gray-900 mb-1">Тиждень 5-8</div>
-                                <div class="text-xs text-gray-600 mb-2">Максимальний ефект</div>
-                                <div class="w-full bg-gray-200 rounded-full h-2">
-                                    <div class="bg-purple-600 h-2 rounded-full course-bar-3" data-width="100" style="width: 0%; transition: width 1.5s ease-in-out;"></div>
-                                </div>
-                                <div class="text-xs text-purple-600 font-bold mt-1">100%</div>
-                            </div>
+                        </div>
+                        
+                        <!-- Права частина - Упаковка НейроКор без підписів -->
+                        <div class="clinical-card bg-white p-4 flex flex-col items-center justify-center">
+                            <img src="assets/neuronor.png" alt="NeuroCor Product" class="max-h-[280px] object-contain drop-shadow-xl">
                         </div>
                     </div>
                 </div>
@@ -1709,17 +1794,17 @@
             <div class="max-w-7xl mx-auto px-4 w-full h-full flex flex-col py-2">
                 <h2 class="text-3xl font-bold text-center mb-4 text-gray-900" style="font-family: 'Inter'; letter-spacing: 0.5px; word-spacing: 3px;">Клінічна ефективність НейроКор</h2>
                 
-                <div class="grid grid-cols-4 gap-4 flex-1">
-                    <!-- Блок 1 - Ефективність лікування -->
-                    <div class="clinical-card bg-white p-5 h-full">
-                        <div class="w-20 h-20 bg-blue-600 rounded-xl mx-auto mb-3 flex items-center justify-center shadow-lg">
-                            <span class="text-4xl">📊</span>
+                <div class="grid grid-cols-4 gap-3 flex-1">
+                    <!-- Блок 1 - Ефективність лікування (компактний) -->
+                    <div class="clinical-card bg-white p-3">
+                        <div class="w-10 h-10 bg-blue-600 rounded-lg mx-auto mb-2 flex items-center justify-center shadow-lg">
+                            <span class="text-xl">📊</span>
                         </div>
-                        <h3 class="font-semibold text-base text-gray-900 mb-3 text-center">Ефективність лікування</h3>
-                        <div class="space-y-3">
+                        <h3 class="font-semibold text-xs text-gray-900 mb-2 text-center">Ефективність лікування</h3>
+                        <div class="space-y-2">
                             <div class="flex items-center justify-between">
                                 <span class="text-xs text-gray-600">Когнітивні функції</span>
-                                <span class="text-blue-600 font-bold text-xs">94.2%</span>
+                                <span class="text-blue-600 font-bold text-xs">94%</span>
                             </div>
                             <div class="w-full bg-gray-200 rounded-full h-1">
                                 <div class="bg-blue-600 h-1 rounded-full progress-bar" data-width="94.2" style="width: 0%; transition: width 2s ease-in-out;"></div>
@@ -1727,23 +1812,15 @@
                             
                             <div class="flex items-center justify-between">
                                 <span class="text-xs text-gray-600">Кровообіг</span>
-                                <span class="text-emerald-600 font-bold text-xs">89.7%</span>
+                                <span class="text-emerald-600 font-bold text-xs">90%</span>
                             </div>
                             <div class="w-full bg-gray-200 rounded-full h-1">
                                 <div class="bg-emerald-600 h-1 rounded-full progress-bar" data-width="89.7" style="width: 0%; transition: width 2s ease-in-out;"></div>
                             </div>
                             
                             <div class="flex items-center justify-between">
-                                <span class="text-xs text-gray-600">Артеріальний тиск</span>
-                                <span class="text-red-600 font-bold text-xs">87.3%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-1">
-                                <div class="bg-red-600 h-1 rounded-full progress-bar" data-width="87.3" style="width: 0%; transition: width 2s ease-in-out;"></div>
-                            </div>
-                            
-                            <div class="flex items-center justify-between">
                                 <span class="text-xs text-gray-600">Пам'ять</span>
-                                <span class="text-purple-600 font-bold text-xs">91.8%</span>
+                                <span class="text-purple-600 font-bold text-xs">92%</span>
                             </div>
                             <div class="w-full bg-gray-200 rounded-full h-1">
                                 <div class="bg-purple-600 h-1 rounded-full progress-bar" data-width="91.8" style="width: 0%; transition: width 2s ease-in-out;"></div>
@@ -1751,28 +1828,24 @@
                         </div>
                     </div>
 
-                    <!-- Блок 2 - Статистика пацієнтів -->
-                    <div class="clinical-card bg-white p-5 h-full">
-                        <div class="w-20 h-20 bg-emerald-600 rounded-xl mx-auto mb-3 flex items-center justify-center shadow-lg">
-                            <span class="text-4xl">👥</span>
+                    <!-- Блок 2 - Статистика пацієнтів (компактний) -->
+                    <div class="clinical-card bg-white p-3">
+                        <div class="w-10 h-10 bg-emerald-600 rounded-lg mx-auto mb-2 flex items-center justify-center shadow-lg">
+                            <span class="text-xl">👥</span>
                         </div>
-                        <h3 class="font-semibold text-base text-gray-900 mb-3 text-center">Статистика пацієнтів</h3>
-                        <div class="space-y-4">
+                        <h3 class="font-semibold text-xs text-gray-900 mb-2 text-center">Статистика пацієнтів</h3>
+                        <div class="space-y-2">
                             <div class="text-center">
-                                <div class="text-xl font-bold text-blue-600 counter" data-target="15340">0</div>
-                                <div class="text-xs text-gray-600">Пацієнтів проліковано</div>
+                                <div class="text-sm font-bold text-blue-600 counter" data-target="15340">0</div>
+                                <div class="text-xs text-gray-600">Пацієнтів</div>
                             </div>
                             <div class="text-center">
-                                <div class="text-xl font-bold text-emerald-600 counter" data-target="98.7">0</div>
-                                <div class="text-xs text-gray-600">% задоволених результатом</div>
+                                <div class="text-sm font-bold text-emerald-600 counter" data-target="98.7">0</div>
+                                <div class="text-xs text-gray-600">% задоволених</div>
                             </div>
                             <div class="text-center">
-                                <div class="text-xl font-bold text-purple-600 counter" data-target="28">0</div>
-                                <div class="text-xs text-gray-600">Днів середній курс</div>
-                            </div>
-                            <div class="text-center">
-                                <div class="text-xl font-bold text-amber-600 counter" data-target="156">0</div>
-                                <div class="text-xs text-gray-600">Лікарів рекомендують</div>
+                                <div class="text-sm font-bold text-purple-600 counter" data-target="28">0</div>
+                                <div class="text-xs text-gray-600">Днів курс</div>
                             </div>
                         </div>
                     </div>
@@ -1902,11 +1975,11 @@
                     </div>
 
                     <!-- Блок 4 - Динаміка лікування -->
-                    <div class="clinical-card bg-white p-5 h-full">
-                        <div class="w-20 h-20 bg-amber-600 rounded-xl mx-auto mb-3 flex items-center justify-center shadow-lg">
-                            <span class="text-4xl">⏱️</span>
+                    <div class="clinical-card bg-white p-4 h-full">
+                        <div class="w-16 h-16 bg-amber-600 rounded-xl mx-auto mb-3 flex items-center justify-center shadow-lg">
+                            <span class="text-3xl">⏱️</span>
                         </div>
-                        <h3 class="font-semibold text-base text-gray-900 mb-3 text-center">Динаміка лікування</h3>
+                        <h3 class="font-semibold text-sm text-gray-900 mb-3 text-center">Динаміка лікування</h3>
                         <div class="space-y-4">
                             <div class="flex items-center space-x-3">
                                 <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white text-xs font-bold relative z-10">1</div>
@@ -1933,40 +2006,40 @@
                     </div>
                 </div>
 
-                <!-- Нижний блок - Загальна ефективність -->
-                <div class="mt-4">
-                    <div class="clinical-card bg-gradient-to-r from-blue-50 to-emerald-50 p-6 border border-blue-200">
-                        <div class="flex items-center justify-center space-x-6">
+                <!-- Компактний нижний блок - Загальна ефективність -->
+                <div class="mt-3">
+                    <div class="clinical-card bg-gradient-to-r from-blue-50 to-emerald-50 p-4 border border-blue-200">
+                        <div class="flex items-center justify-center space-x-4">
                             <div class="text-center">
-                                <div class="w-16 h-16 bg-blue-600 rounded-xl mx-auto mb-2 flex items-center justify-center shadow-lg">
-                                    <span class="text-2xl">✅</span>
+                                <div class="w-12 h-12 bg-blue-600 rounded-lg mx-auto mb-1 flex items-center justify-center shadow-lg">
+                                    <span class="text-lg">✅</span>
                                 </div>
-                                <div class="text-2xl font-bold text-blue-600 counter" data-target="96.3">0</div>
-                                <div class="text-sm text-gray-600">% загальна ефективність</div>
+                                <div class="text-lg font-bold text-blue-600 counter" data-target="96.3">0</div>
+                                <div class="text-xs text-gray-600">% загальна ефективність</div>
                             </div>
                             
                             <div class="text-center">
-                                <div class="w-16 h-16 bg-emerald-600 rounded-xl mx-auto mb-2 flex items-center justify-center shadow-lg">
-                                    <span class="text-2xl">⚡</span>
+                                <div class="w-12 h-12 bg-emerald-600 rounded-lg mx-auto mb-1 flex items-center justify-center shadow-lg">
+                                    <span class="text-lg">⚡</span>
                                 </div>
-                                <div class="text-2xl font-bold text-emerald-600 counter" data-target="14">0</div>
-                                <div class="text-sm text-gray-600">днів до першого ефекту</div>
+                                <div class="text-lg font-bold text-emerald-600 counter" data-target="14">0</div>
+                                <div class="text-xs text-gray-600">днів до ефекту</div>
                             </div>
                             
                             <div class="text-center">
-                                <div class="w-16 h-16 bg-purple-600 rounded-xl mx-auto mb-2 flex items-center justify-center shadow-lg">
-                                    <span class="text-2xl">🎯</span>
+                                <div class="w-12 h-12 bg-purple-600 rounded-lg mx-auto mb-1 flex items-center justify-center shadow-lg">
+                                    <span class="text-lg">🎯</span>
                                 </div>
-                                <div class="text-2xl font-bold text-purple-600 counter" data-target="92.8">0</div>
-                                <div class="text-sm text-gray-600">% точність прогнозу</div>
+                                <div class="text-lg font-bold text-purple-600 counter" data-target="92.8">0</div>
+                                <div class="text-xs text-gray-600">% точність</div>
                             </div>
                             
                             <div class="text-center">
-                                <div class="w-16 h-16 bg-amber-600 rounded-xl mx-auto mb-2 flex items-center justify-center shadow-lg">
-                                    <span class="text-2xl">🔄</span>
+                                <div class="w-12 h-12 bg-amber-600 rounded-lg mx-auto mb-1 flex items-center justify-center shadow-lg">
+                                    <span class="text-lg">🔄</span>
                                 </div>
-                                <div class="text-2xl font-bold text-amber-600 counter" data-target="85.7">0</div>
-                                <div class="text-sm text-gray-600">% повторних курсів</div>
+                                <div class="text-lg font-bold text-amber-600 counter" data-target="85.7">0</div>
+                                <div class="text-xs text-gray-600">% повторні курси</div>
                             </div>
                         </div>
                     </div>
